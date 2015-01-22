@@ -1,2 +1,2 @@
-# shelloid.github.io
-Shelloid docs
+# shelloid-doc
+Shelloid documentation
