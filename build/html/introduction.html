@@ -1,0 +1,153 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Introduction &mdash; Shelloid 0.1.6 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '0.1.6',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="top" title="Shelloid 0.1.6 documentation" href="index.html" />
+    <link rel="next" title="Getting Started" href="getting-started.html" />
+    <link rel="prev" title="Welcome to Shelloid’s documentation!" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="getting-started.html" title="Getting Started"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Shelloid’s documentation!"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">Shelloid 0.1.6 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Shelloid is an open source web application server for Node.js that aims at making Node.js web application development simple and secure. It takes care of the infrastructure logic and lets you focus on your business logic, leading to quick time to market for your business-critical applications. It is open sourced under LGPL license, allowing you to run your commercial closed source applications on the top of it.</p>
+<p>In order to improve programmer productivity and make your code readable, maintainable, and secure, Shelloid employs the following foundational principles:</p>
+<ol class="arabic simple">
+<li>Convention over configuration.</li>
+<li>Declarative over procedural.</li>
+<li>Separation of concerns.</li>
+<li>Secure defaults.</li>
+</ol>
+</div>
+<div class="section" id="key-features">
+<h2>Key features<a class="headerlink" href="#key-features" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Use of declarative annotations instead of writing code for many useful functions.</li>
+<li>Built in authentication (via passport.js) - requires only a single authentication function to be written.</li>
+<li>Currently supports local authentication as well as Google, Facebook, Twitter authentications out of the box.</li>
+<li>Built-in login session management.</li>
+<li>Built-in role-based access control with roles attached to controllers via annotations.</li>
+<li>Custom authentication, e.g, for API implementations that is attached to routes via annotations.</li>
+<li>Supports specification-based verification of API requests/responses. Simple API specification which is automatically checked against requests for enhanced security, robustness. The application code will be cleaner owing to lesser checks required.</li>
+<li>Built in cluster support by setting a single configuration flag. Built-in logging with cluster support.</li>
+<li>Simplified DB API with built-in connection pooling.</li>
+<li>Named SQL query strings can be declared as annotations and executed using the name.</li>
+<li>Built-in simulator for controlled functional testing of the application/controller logic (work in progress). Simulator will allow specification and verification of temporal properties, controlled flow of time, etc.</li>
+<li>Support for easily configurable UI themes.</li>
+<li>Built in proper error and exception handling that takes care of sending error responses and freeing DB connections.</li>
+<li>Built in simple and versatile sequencing API that avoids callback hell and results in readily understandable code.</li>
+<li>Simple config specification for allowing cross-origin requests (implementation complying with CORS standard).</li>
+<li>Auto detection of the current node of execution based on specified node names to IP/hostname mapping - useful for distributed and cloud deployments.</li>
+<li>And, more being added every day!</li>
+</ul>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Introduction</a><ul>
+<li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#key-features">Key features</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="index.html"
+                        title="previous chapter">Welcome to Shelloid&#8217;s documentation!</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="getting-started.html"
+                        title="next chapter">Getting Started</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/introduction.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="getting-started.html" title="Getting Started"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="index.html" title="Welcome to Shelloid’s documentation!"
+             >previous</a> |</li>
+        <li><a href="index.html">Shelloid 0.1.6 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2015, Shelloid Systems LLP.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>
