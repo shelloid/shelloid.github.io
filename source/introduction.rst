@@ -18,6 +18,7 @@ Key features
 -------------
 
 * Use of declarative annotations instead of writing code for many useful functions.
+* Configurable automatic restarting of the server in case of changes to the application code or unrecoverable errors.
 * Built in authentication (via passport.js) - requires only a single authentication function to be written.
 * Currently supports local authentication as well as Google, Facebook, Twitter authentications out of the box.
 * Built-in login session management.
