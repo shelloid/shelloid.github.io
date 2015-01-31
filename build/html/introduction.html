@@ -6,7 +6,7 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     
-    <title>Introduction &mdash; Shelloid 0.1.6 documentation</title>
+    <title>Introduction &mdash; Shelloid 0.1.8 documentation</title>
     
     <link rel="stylesheet" href="_static/default.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
@@ -14,7 +14,7 @@
     <script type="text/javascript">
       var DOCUMENTATION_OPTIONS = {
         URL_ROOT:    './',
-        VERSION:     '0.1.6',
+        VERSION:     '0.1.8',
         COLLAPSE_INDEX: false,
         FILE_SUFFIX: '.html',
         HAS_SOURCE:  true
@@ -24,7 +24,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
-    <link rel="top" title="Shelloid 0.1.6 documentation" href="index.html" />
+    <link rel="top" title="Shelloid 0.1.8 documentation" href="index.html" />
     <link rel="next" title="Getting Started" href="getting-started.html" />
     <link rel="prev" title="Welcome to Shelloid’s documentation!" href="index.html" /> 
   </head>
@@ -41,7 +41,7 @@
         <li class="right" >
           <a href="index.html" title="Welcome to Shelloid’s documentation!"
              accesskey="P">previous</a> |</li>
-        <li><a href="index.html">Shelloid 0.1.6 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Shelloid 0.1.8 documentation</a> &raquo;</li> 
       </ul>
     </div>  
 
@@ -67,6 +67,7 @@
 <h2>Key features<a class="headerlink" href="#key-features" title="Permalink to this headline">¶</a></h2>
 <ul class="simple">
 <li>Use of declarative annotations instead of writing code for many useful functions.</li>
+<li>Configurable automatic restarting of the server in case of changes to the application code or unrecoverable errors.</li>
 <li>Built in authentication (via passport.js) - requires only a single authentication function to be written.</li>
 <li>Currently supports local authentication as well as Google, Facebook, Twitter authentications out of the box.</li>
 <li>Built-in login session management.</li>
@@ -78,6 +79,7 @@
 <li>Named SQL query strings can be declared as annotations and executed using the name.</li>
 <li>Built-in simulator for controlled functional testing of the application/controller logic (work in progress). Simulator will allow specification and verification of temporal properties, controlled flow of time, etc.</li>
 <li>Support for easily configurable UI themes.</li>
+<li>UI themes can be associated with domains, i.e., depending on the domain by which the site is accessed a separate set of files/views can be served. Note that, at the moment, controllers are shared across domains. This results in a limited support for virtual hosting.</li>
 <li>Built in proper error and exception handling that takes care of sending error responses and freeing DB connections.</li>
 <li>Built in simple and versatile sequencing API that avoids callback hell and results in readily understandable code.</li>
 <li>Simple config specification for allowing cross-origin requests (implementation complying with CORS standard).</li>
@@ -142,7 +144,7 @@
         <li class="right" >
           <a href="index.html" title="Welcome to Shelloid’s documentation!"
              >previous</a> |</li>
-        <li><a href="index.html">Shelloid 0.1.6 documentation</a> &raquo;</li> 
+        <li><a href="index.html">Shelloid 0.1.8 documentation</a> &raquo;</li> 
       </ul>
     </div>
     <div class="footer">

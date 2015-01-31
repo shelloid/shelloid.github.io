@@ -30,6 +30,7 @@ Key features
 * Named SQL query strings can be declared as annotations and executed using the name.
 * Built-in simulator for controlled functional testing of the application/controller logic (work in progress). Simulator will allow specification and verification of temporal properties, controlled flow of time, etc.
 * Support for easily configurable UI themes.
+* UI themes can be associated with domains, i.e., depending on the domain by which the site is accessed a separate set of files/views can be served. Note that, at the moment, controllers are shared across domains. This results in a limited support for virtual hosting.
 * Built in proper error and exception handling that takes care of sending error responses and freeing DB connections.
 * Built in simple and versatile sequencing API that avoids callback hell and results in readily understandable code.
 * Simple config specification for allowing cross-origin requests (implementation complying with CORS standard).
