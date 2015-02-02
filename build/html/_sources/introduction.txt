@@ -12,6 +12,7 @@ The following code snippet illustrates how the integration works. In the code, w
 
 Node.js 
 .. code-block:: javascript
+
 	sh.ccs.add(100, 200, function(err, r){
 	console.log("Result: " + r);
 	});
@@ -19,6 +20,7 @@ Node.js
 
 Clojure
 .. code-block:: clojure
+
 	(service add [a b]
 		(+ a b)
 	)
