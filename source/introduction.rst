@@ -4,19 +4,39 @@ Introduction
 Overview
 ---------
 
-Shelloid is an open source web application server for Node.js that aims at making Node.js web application development simple and secure. It takes care of the infrastructure logic and lets you focus on your business logic, leading to quick time to market for your business-critical applications. It is open sourced under LGPL license, allowing you to run your commercial closed source applications on the top of it.
+Shelloid is an open source web application server for Node.js that attempts to bring out the best of two cool modern programming platforms: Node.js and Clojure. Node.js is great for web and real-time. Clojure is great for concurrent computations. So, why not let the Node.js handle the web requests and real-time messaging and use Clojure when there is a heavy computation at hand? Shelloid does just that.
 
-In order to improve programmer productivity and make your code readable, maintainable, and secure, Shelloid employs the following foundational principles:
+Shelloid is essentially a Node.js web application server with integrated Clojure-based compute service which runs as a separate process. Shelloid takes care of all the integration details. While the Clojure compute service is executing a heavy computation, Node.js event loop is freed up to process other requests.
 
-1. Convention over configuration.
-2. Declarative over procedural.
-3. Separation of concerns.
-4. Secure defaults.
+The following code snippet illustrates how the integration works. In the code, we define a compute service named add in Clojure. From Node.js this service is invoked by calling sh.ccs.add function (sh stands for shelloid, ccs for Clojure compute service). This results in parameters being passed to the CCS process and the Clojure add service function being executed. The result of the Clojure function is passed back to Node.js and the callback is invoked with err message if any and the result value. After passing off the computation to the Clojure, Node.js event loop is freed up to execute other requests.
+
+Node.js ::
+	sh.ccs.add(100, 200, function(err, r){
+	console.log("Result: " + r);
+	});
+
+
+Clojure::
+	(service add [a b]
+		(+ a b)
+	)
+
+Clojure compute service (CCS) requires `Leiningen <http://leiningen.org>`_ to be installed somewhere in the system path.
+
+Please Note: More documentation is on the way. Please bear with us for couple of weeks!
+
+Open, extensible architecture
+-----------------------------
+
+Shelloid has an open, extensible architecture. While open sourcing is great for the users, Shelloid goes beyond merely being open source. Shelloid has a open architecture created from ground up, allowing you to easily write extensions that can modify the behaviour of the engine to suit your needs. Many of Shelloid's  built-in features are themselves built as extensions, leading to a relatively small and robust core.
+
+Our vision is to simplify the development of secure and robust web applications and services, improving programmer productivity and enabling quick time-to-market. Shelloid takes care of the infrastructure logic and lets you focus on your business logic, leading to quick time to market for your business-critical applications. Shelloid is open sourced under LGPL license, allowing you to run your commercial closed source applications on the top of it.
 
 
 Key features
 -------------
 
+* Integrated Clojure compute service.
 * Use of declarative annotations instead of writing code for many useful functions.
 * Configurable automatic restarting of the server in case of changes to the application code or unrecoverable errors.
 * Built in authentication (via passport.js) - requires only a single authentication function to be written.
