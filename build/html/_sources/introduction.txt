@@ -11,6 +11,7 @@ Shelloid is essentially a Node.js web application server with integrated Clojure
 The following code snippet illustrates how the integration works. In the code, we define a compute service named add in Clojure. From Node.js this service is invoked by calling sh.ccs.add function (sh stands for shelloid, ccs for Clojure compute service). This results in parameters being passed to the CCS process and the Clojure add service function being executed. The result of the Clojure function is passed back to Node.js and the callback is invoked with err message if any and the result value. After passing off the computation to the Clojure, Node.js event loop is freed up to execute other requests.
 
 Node.js 
+
 .. code-block:: javascript
 
 	sh.ccs.add(100, 200, function(err, r){
@@ -19,6 +20,7 @@ Node.js
 
 
 Clojure
+
 .. code-block:: clojure
 
 	(service add [a b]
