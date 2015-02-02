@@ -57,19 +57,21 @@
 <p>Shelloid is an open source web application server for Node.js that attempts to bring out the best of two cool modern programming platforms: Node.js and Clojure. Node.js is great for web and real-time. Clojure is great for concurrent computations. So, why not let the Node.js handle the web requests and real-time messaging and use Clojure when there is a heavy computation at hand? Shelloid does just that.</p>
 <p>Shelloid is essentially a Node.js web application server with integrated Clojure-based compute service which runs as a separate process. Shelloid takes care of all the integration details. While the Clojure compute service is executing a heavy computation, Node.js event loop is freed up to process other requests.</p>
 <p>The following code snippet illustrates how the integration works. In the code, we define a compute service named add in Clojure. From Node.js this service is invoked by calling sh.ccs.add function (sh stands for shelloid, ccs for Clojure compute service). This results in parameters being passed to the CCS process and the Clojure add service function being executed. The result of the Clojure function is passed back to Node.js and the callback is invoked with err message if any and the result value. After passing off the computation to the Clojure, Node.js event loop is freed up to execute other requests.</p>
-<dl class="docutils">
-<dt>Node.js ::</dt>
-<dd>sh.ccs.add(100, 200, function(err, r){
+<p>Node.js
+.. code-block:: javascript</p>
+<blockquote>
+<div>sh.ccs.add(100, 200, function(err, r){
 console.log(&#8220;Result: &#8221; + r);
-});</dd>
-<dt>Clojure::</dt>
-<dd><dl class="first docutils">
+});</div></blockquote>
+<p>Clojure
+.. code-block:: clojure</p>
+<blockquote>
+<div><dl class="docutils">
 <dt>(service add [a b]</dt>
 <dd>(+ a b)</dd>
 </dl>
-<p class="last">)</p>
-</dd>
-</dl>
+<p>)</p>
+</div></blockquote>
 <p>Clojure compute service (CCS) requires <a class="reference external" href="http://leiningen.org">Leiningen</a> to be installed somewhere in the system path.</p>
 <p>Please Note: More documentation is on the way. Please bear with us for couple of weeks!</p>
 </div>
