@@ -4,7 +4,41 @@ Introduction
 Overview
 ---------
 
-Shelloid is an open source web application server for Node.js that attempts to bring out the best of two cool modern programming platforms: Node.js and Clojure. Node.js is great for web and real-time. Clojure is great for concurrent computations. So, why not let the Node.js handle the web requests and real-time messaging and use Clojure when there is a heavy computation at hand? Shelloid does just that.
+Shelloid is an IoT-ready open source web application server built using Node.js and Clojure that contains integrated stream query capability. Shelloid allows developers to easily integrate events from IoT sources such as the Nest thermostat by annotating functions with simple stream query specifications.
+
+The following code illustrates this point
+
+.. code-block:: javascript
+
+	/**
+	@stream.sdl select: ambient_temperature_f, name_long;
+	            from: nest.thermostat;
+	            where: ambient_temperature_f >= %threshold%
+	@stream.init highTemperatureInit
+	*/
+	exports.highTemperature = function(data, stream, user){
+	 console.log("highTemperature Data: ", data, 
+				  " for user id ", user);
+	}
+	exports.highTemperatureInit = function(stream, done){
+	 stream.setParams({threshold:80});
+	 done();
+	}
+
+
+In the above code snippet the "highTemperature" function defines a real-time IoT data stream owing to its associated stream annotations. The "stream.sdl" (sdl stands for stream definition language) defines the stream characteristics in a syntax remindful of the SQL. The "stream.init" specifies an initialization function that is used to set the stream params. Shelloid will process the stream query in the background invoke the "highTemperature" function when the query condition holds true.
+
+Shelloid stack is built using cutting-edge technologies such as Node.js (for the web tier), MongoDB (analytics DB), and Clojure (real-time stream computations). Real-time events from raw data can be generating using simple, declarative SQL-like stream queries. 
+
+With its stream query annotations, Shelloid enables web applications to easily generate and process real-time events from IoT sources such as the Nest thermostat, Fitbit/Jawbone fitness bands, and many more. Our vision is to simplify the development of secure and robust IoT-enabled web applications and web services, improving programmer productivity and enabling quick time-to-market. 
+
+Shelloid takes care of the infrastructure logic and lets you focus on your business logic, leading to quick time to market for your business-critical applications. Shelloid is open sourced under LGPL license, allowing you to run your commercial closed source applications on the top of it.
+
+
+Node - Clojure integration
+--------------------------
+
+Shelloid attempts to bring out the best of two cool modern programming platforms: Node.js and Clojure. Node.js is great for web and real-time. Clojure is great for concurrent computations. So, why not let the Node.js handle the web requests and real-time messaging and use Clojure when there is a heavy computation at hand? Shelloid does just that.
 
 Shelloid is essentially a Node.js web application server with integrated Clojure-based compute service which runs as a separate process. Shelloid takes care of all the integration details. While the Clojure compute service is executing a heavy computation, Node.js event loop is freed up to process other requests.
 

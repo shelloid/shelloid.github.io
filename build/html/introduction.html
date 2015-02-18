@@ -54,7 +54,32 @@
 <h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
 <div class="section" id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
-<p>Shelloid is an open source web application server for Node.js that attempts to bring out the best of two cool modern programming platforms: Node.js and Clojure. Node.js is great for web and real-time. Clojure is great for concurrent computations. So, why not let the Node.js handle the web requests and real-time messaging and use Clojure when there is a heavy computation at hand? Shelloid does just that.</p>
+<p>Shelloid is an IoT-ready open source web application server built using Node.js and Clojure that contains integrated stream query capability. Shelloid allows developers to easily integrate events from IoT sources such as the Nest thermostat by annotating functions with simple stream query specifications.</p>
+<p>The following code illustrates this point</p>
+<div class="highlight-javascript"><div class="highlight"><pre><span class="cm">/**</span>
+<span class="cm">@stream.sdl select: ambient_temperature_f, name_long;</span>
+<span class="cm">            from: nest.thermostat;</span>
+<span class="cm">            where: ambient_temperature_f &gt;= %threshold%</span>
+<span class="cm">@stream.init highTemperatureInit</span>
+<span class="cm">*/</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">highTemperature</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">stream</span><span class="p">,</span> <span class="nx">user</span><span class="p">){</span>
+ <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;highTemperature Data: &quot;</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span>
+                          <span class="s2">&quot; for user id &quot;</span><span class="p">,</span> <span class="nx">user</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">highTemperatureInit</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">stream</span><span class="p">,</span> <span class="nx">done</span><span class="p">){</span>
+ <span class="nx">stream</span><span class="p">.</span><span class="nx">setParams</span><span class="p">({</span><span class="nx">threshold</span><span class="o">:</span><span class="mi">80</span><span class="p">});</span>
+ <span class="nx">done</span><span class="p">();</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+<p>In the above code snippet the &#8220;highTemperature&#8221; function defines a real-time IoT data stream owing to its associated stream annotations. The &#8220;stream.sdl&#8221; (sdl stands for stream definition language) defines the stream characteristics in a syntax remindful of the SQL. The &#8220;stream.init&#8221; specifies an initialization function that is used to set the stream params. Shelloid will process the stream query in the background invoke the &#8220;highTemperature&#8221; function when the query condition holds true.</p>
+<p>Shelloid stack is built using cutting-edge technologies such as Node.js (for the web tier), MongoDB (analytics DB), and Clojure (real-time stream computations). Real-time events from raw data can be generating using simple, declarative SQL-like stream queries.</p>
+<p>With its stream query annotations, Shelloid enables web applications to easily generate and process real-time events from IoT sources such as the Nest thermostat, Fitbit/Jawbone fitness bands, and many more. Our vision is to simplify the development of secure and robust IoT-enabled web applications and web services, improving programmer productivity and enabling quick time-to-market.</p>
+<p>Shelloid takes care of the infrastructure logic and lets you focus on your business logic, leading to quick time to market for your business-critical applications. Shelloid is open sourced under LGPL license, allowing you to run your commercial closed source applications on the top of it.</p>
+</div>
+<div class="section" id="node-clojure-integration">
+<h2>Node - Clojure integration<a class="headerlink" href="#node-clojure-integration" title="Permalink to this headline">¶</a></h2>
+<p>Shelloid attempts to bring out the best of two cool modern programming platforms: Node.js and Clojure. Node.js is great for web and real-time. Clojure is great for concurrent computations. So, why not let the Node.js handle the web requests and real-time messaging and use Clojure when there is a heavy computation at hand? Shelloid does just that.</p>
 <p>Shelloid is essentially a Node.js web application server with integrated Clojure-based compute service which runs as a separate process. Shelloid takes care of all the integration details. While the Clojure compute service is executing a heavy computation, Node.js event loop is freed up to process other requests.</p>
 <p>The following code snippet illustrates how the integration works. In the code, we define a compute service named add in Clojure. From Node.js this service is invoked by calling sh.ccs.add function (sh stands for shelloid, ccs for Clojure compute service). This results in parameters being passed to the CCS process and the Clojure add service function being executed. The result of the Clojure function is passed back to Node.js and the callback is invoked with err message if any and the result value. After passing off the computation to the Clojure, Node.js event loop is freed up to execute other requests.</p>
 <p>Node.js</p>
@@ -114,6 +139,7 @@
   <ul>
 <li><a class="reference internal" href="#">Introduction</a><ul>
 <li><a class="reference internal" href="#overview">Overview</a></li>
+<li><a class="reference internal" href="#node-clojure-integration">Node - Clojure integration</a></li>
 <li><a class="reference internal" href="#open-extensible-architecture">Open, extensible architecture</a></li>
 <li><a class="reference internal" href="#key-features">Key features</a></li>
 </ul>
