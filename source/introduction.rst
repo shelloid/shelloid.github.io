@@ -4,7 +4,7 @@ Introduction
 Overview
 ---------
 
-Shelloid is an IoT-ready open source web application server built using Node.js and Clojure that contains integrated stream query capability. Shelloid allows developers to easily integrate events from IoT sources such as the Nest thermostat by annotating functions with simple stream query specifications.
+Shelloid is an open source IoT-ready real-time big data web application platform built using Node.js and Clojure that contains integrated stream query capability. Shelloid allows developers to easily integrate events from IoT sources such as the Nest thermostat by annotating functions with simple stream query specifications.
 
 The following code illustrates this point
 
