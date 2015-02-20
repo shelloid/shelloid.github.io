@@ -12,21 +12,21 @@ The following code illustrates this point
 
 	/**
 	@stream.sdl select: ambient_temperature_f, name_long;
-	            from: nest.thermostat;
-	            where: ambient_temperature_f >= %threshold%
+				from: nest.thermostat;
+				where: ambient_temperature_f >= %threshold%
 	@stream.init highTemperatureInit
 	*/
-	exports.highTemperature = function(data, stream, user){
-	 console.log("highTemperature Data: ", data, 
-				  " for user id ", user);
+	exports.highTemperature = function(data, streamInst, user){
+		console.log("highTemperature Data: ", data, " for user id ", user);
 	}
-	exports.highTemperatureInit = function(stream, done){
-	 stream.setParams({threshold:80});
-	 done();
+	exports.highTemperatureInit = function(streamDef, done){
+		var instance = streamDef.newInstance({threshold:80}, 
+		"global");
+		done();
 	}
 
-
-In the above code snippet the "highTemperature" function defines a real-time IoT data stream owing to its associated stream annotations. The "stream.sdl" (sdl stands for stream definition language) defines the stream characteristics in a syntax remindful of the SQL. The "stream.init" specifies an initialization function that is used to set the stream params. Shelloid will process the stream query in the background invoke the "highTemperature" function when the query condition holds true.
+	
+In the above code snippet the "highTemperature" function defines a real-time IoT data stream owing to its associated stream annotations. The "stream.sdl" (sdl stands for stream definition language) defines the stream characteristics in a syntax remindful of the SQL. The "stream.init" specifies an initialization function, which in this case, creates a global stream instance. Shelloid will process the stream query in the background invoke the "highTemperature" function when the query condition holds true.
 
 Shelloid stack is built using cutting-edge technologies such as Node.js (for the web tier), MongoDB (analytics DB), and Clojure (real-time stream computations). Real-time events from raw data can be generating using simple, declarative SQL-like stream queries. 
 

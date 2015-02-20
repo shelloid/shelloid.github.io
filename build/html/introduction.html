@@ -58,21 +58,21 @@
 <p>The following code illustrates this point</p>
 <div class="highlight-javascript"><div class="highlight"><pre><span class="cm">/**</span>
 <span class="cm">@stream.sdl select: ambient_temperature_f, name_long;</span>
-<span class="cm">            from: nest.thermostat;</span>
-<span class="cm">            where: ambient_temperature_f &gt;= %threshold%</span>
+<span class="cm">                        from: nest.thermostat;</span>
+<span class="cm">                        where: ambient_temperature_f &gt;= %threshold%</span>
 <span class="cm">@stream.init highTemperatureInit</span>
 <span class="cm">*/</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">highTemperature</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">stream</span><span class="p">,</span> <span class="nx">user</span><span class="p">){</span>
- <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;highTemperature Data: &quot;</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span>
-                          <span class="s2">&quot; for user id &quot;</span><span class="p">,</span> <span class="nx">user</span><span class="p">);</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">highTemperature</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">streamInst</span><span class="p">,</span> <span class="nx">user</span><span class="p">){</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s2">&quot;highTemperature Data: &quot;</span><span class="p">,</span> <span class="nx">data</span><span class="p">,</span> <span class="s2">&quot; for user id &quot;</span><span class="p">,</span> <span class="nx">user</span><span class="p">);</span>
 <span class="p">}</span>
-<span class="nx">exports</span><span class="p">.</span><span class="nx">highTemperatureInit</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">stream</span><span class="p">,</span> <span class="nx">done</span><span class="p">){</span>
- <span class="nx">stream</span><span class="p">.</span><span class="nx">setParams</span><span class="p">({</span><span class="nx">threshold</span><span class="o">:</span><span class="mi">80</span><span class="p">});</span>
- <span class="nx">done</span><span class="p">();</span>
+<span class="nx">exports</span><span class="p">.</span><span class="nx">highTemperatureInit</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">streamDef</span><span class="p">,</span> <span class="nx">done</span><span class="p">){</span>
+        <span class="kd">var</span> <span class="nx">instance</span> <span class="o">=</span> <span class="nx">streamDef</span><span class="p">.</span><span class="nx">newInstance</span><span class="p">({</span><span class="nx">threshold</span><span class="o">:</span><span class="mi">80</span><span class="p">},</span>
+        <span class="s2">&quot;global&quot;</span><span class="p">);</span>
+        <span class="nx">done</span><span class="p">();</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>In the above code snippet the &#8220;highTemperature&#8221; function defines a real-time IoT data stream owing to its associated stream annotations. The &#8220;stream.sdl&#8221; (sdl stands for stream definition language) defines the stream characteristics in a syntax remindful of the SQL. The &#8220;stream.init&#8221; specifies an initialization function that is used to set the stream params. Shelloid will process the stream query in the background invoke the &#8220;highTemperature&#8221; function when the query condition holds true.</p>
+<p>In the above code snippet the &#8220;highTemperature&#8221; function defines a real-time IoT data stream owing to its associated stream annotations. The &#8220;stream.sdl&#8221; (sdl stands for stream definition language) defines the stream characteristics in a syntax remindful of the SQL. The &#8220;stream.init&#8221; specifies an initialization function, which in this case, creates a global stream instance. Shelloid will process the stream query in the background invoke the &#8220;highTemperature&#8221; function when the query condition holds true.</p>
 <p>Shelloid stack is built using cutting-edge technologies such as Node.js (for the web tier), MongoDB (analytics DB), and Clojure (real-time stream computations). Real-time events from raw data can be generating using simple, declarative SQL-like stream queries.</p>
 <p>With its stream query annotations, Shelloid enables web applications to easily generate and process real-time events from IoT sources such as the Nest thermostat, Fitbit/Jawbone fitness bands, and many more. Our vision is to simplify the development of secure and robust IoT-enabled web applications and web services, improving programmer productivity and enabling quick time-to-market.</p>
 <p>Shelloid takes care of the infrastructure logic and lets you focus on your business logic, leading to quick time to market for your business-critical applications. Shelloid is open sourced under LGPL license, allowing you to run your commercial closed source applications on the top of it.</p>
