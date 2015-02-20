@@ -55,7 +55,6 @@ In the above code snippets doc-style comments are used to succinctly specify ann
 		for(var k in streamInst.pendingRequests){
 			var pending = streamInst.pendingRequests[k];
 			pending.res.send(data);
-			pending.release();
 		}	
 	}
 	function highTemperatureInit(streamDef, done){
