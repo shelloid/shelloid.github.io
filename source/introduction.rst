@@ -15,16 +15,15 @@ The following code illustrates this point
 				from: nest.thermostat;
 				where: ambient_temperature_f >= %threshold%
 	@stream.init highTemperatureInit
+	@stream.auth highTemperatureAuth
 	@stream.edgeTriggered
 	*/
 	exports.highTemperature = function(data, streamInst, user){
 		console.log("highTemperature Data: ", data, " for user id ", user);
-		for(var k in streamInst.pendingRequests){
-			var pending = streamInst.pendingRequests[k];
-			pending.send(data);
-		}
 	}
-
+	exports.highTemperatureAuth = function(req, streamInst, user, done){
+		done(true);
+	}
 	exports.highTemperatureInit = function(streamDef, done){
 		var instance = streamDef.newInstance({threshold:80}, 
 		"global");
@@ -45,7 +44,8 @@ In the above code snippets doc-style comments are used to succinctly specify ann
 					"from: nest.thermostat;" +
 					"where: ambient_temperature_f >= %threshold%",
 				init: highTemperatureInit,
-				edgeTriggered: true
+				edgeTriggered: true,
+				auth: highTemperatureAuth
 			}
 		},
 		fn: highTemperature
@@ -62,13 +62,19 @@ In the above code snippets doc-style comments are used to succinctly specify ann
 		"global");
 		done();
 	}
+
+	function highTemperatureAuth(req, streamInst, user, done){
+		done(true);
+	}
 	
 	
 In the above code snippet the "highTemperature" function defines a real-time IoT data stream owing to its associated stream annotations. The "stream.sdl" (sdl stands for stream definition language) defines the stream characteristics in a syntax remindful of the SQL. The "stream.init" specifies an initialization function, which in this case, creates a global stream instance. Shelloid will process the stream query in the background invoke the "highTemperature" function when the query condition holds true.
 
 Shelloid supports special edge-triggered stream queries (specified with edgeTriggered annotation). An edge triggered stream handler is invoked if and only if there is a change in the query result from the previous query.
 
-Each stream has an associated URL, similar to the way URLs are associated with controllers.  An HTTP request to this URL essentially supplies the caller with the stream query result. The HTTP response to stream URLs contains a 'tag' field which can be provided back as query parameter.  Whenever there is change in the query result the tag maintained by the server changes. If tag field is specified then the request will return only if server's tag changes from the specified tag. If provided tag is same as the server's data tag for the stream instance, Shelloid will hold the request (long polling style) until the stream event fires - upon which the stream handler can list the pending requests and process them one by one (support for websocket-based streaming is in progress). 
+Each stream has an associated URL, similar to the way URLs are associated with controllers.  An HTTP request to this URL essentially supplies the caller with the stream query result. The HTTP response to stream URLs contains a 'tag' field which can be provided back as query parameter.  Whenever there is change in the query result the tag maintained by the server changes. If tag field is specified then the request will return only if server's tag changes from the specified tag. If provided tag is same as the server's data tag for the stream instance, Shelloid will hold the request (long polling style) until the stream event fires (support for websocket-based streaming is in progress). 
+
+The stream.auth annotation is used for specifying custom authorization function for stream URL requests (note that basic authorization can be achieved using standard authorization modules, e.g., Shelloid has a built-in RBAC module).
 
 Shelloid stack is built using cutting-edge technologies such as Node.js (for the web tier), MongoDB (analytics DB), and Clojure (real-time stream computations). Real-time events from raw data can be generating using simple, declarative SQL-like stream queries. 
 
