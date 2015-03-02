@@ -76,7 +76,7 @@ Each stream has an associated URL, similar to the way URLs are associated with c
 
 The stream.auth annotation is used for specifying custom authorization function for stream URL requests (note that basic authorization can be achieved using standard authorization modules, e.g., Shelloid has a built-in RBAC module).
 
-Shelloid stack is built using cutting-edge technologies such as Node.js (for the web tier), MongoDB (analytics DB), and Clojure (real-time stream computations). Real-time events from raw data can be generating using simple, declarative SQL-like stream queries. 
+Shelloid stack combines two cutting-edge technologies to achieve scalable real-time data processing - Node.js (for real-time I/O) and Clojure (for real-time stream computations). Real-time events from raw data can be generating using simple, declarative SQL-like stream queries. 
 
 With its stream query annotations, Shelloid enables web applications to easily generate and process real-time events from IoT sources such as the Nest thermostat, Fitbit/Jawbone fitness bands, and many more. Our vision is to simplify the development of secure and robust IoT-enabled web applications and web services, improving programmer productivity and enabling quick time-to-market. 
 
